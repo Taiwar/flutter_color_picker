@@ -12,14 +12,14 @@ class ColorTile extends StatelessWidget {
 
   ColorTile(
       {@required this.color,
-      this.onTap,
-      this.size = 70.0,
-      this.rounded = false,
-      this.check = false});
+        this.onTap,
+        this.size = 70.0,
+        this.rounded = false,
+        this.check = false});
 
   @override
   Widget build(BuildContext context) {
-    var body;
+    Widget body;
     if (rounded == true) {
       body = new Container(
           height: size,
@@ -48,9 +48,9 @@ class ColorPickerGrid extends StatelessWidget {
 
   ColorPickerGrid(
       {@required this.colors,
-      @required this.onTap,
-      this.rounded = false,
-      this.selected});
+        @required this.onTap,
+        this.rounded = false,
+        this.selected});
 
   @override
   Widget build(BuildContext context) {
@@ -63,11 +63,11 @@ class ColorPickerGrid extends StatelessWidget {
     return new Column(children: rows);
   }
 
-  _buildColorRows(List<Color> colors, ValueChanged<Color> onTap,
+  List<Widget> _buildColorRows(List<Color> colors, ValueChanged<Color> onTap,
       {int sizeRow: 4, bool rounded = false, Color selected}) {
-    final rows = [];
+    final List<Widget> rows = [];
     int count = 0;
-    var row;
+    List<Widget> row;
     for (Color color in colors) {
       if (count % sizeRow == 0) {
         if (row != null) {
@@ -101,20 +101,20 @@ class PrimaryColorPickerGrid extends ColorPickerGrid {
   PrimaryColorPickerGrid(
       {@required ValueChanged<Color> onTap, bool rounded, Color selected})
       : super(
-            colors: Colors.primaries,
-            onTap: onTap,
-            rounded: rounded,
-            selected: selected);
+      colors: Colors.primaries,
+      onTap: onTap,
+      rounded: rounded,
+      selected: selected);
 }
 
 class AccentColorPickerGrid extends ColorPickerGrid {
   AccentColorPickerGrid(
       {@required ValueChanged<Color> onTap, bool rounded, Color selected})
       : super(
-            colors: Colors.accents,
-            onTap: onTap,
-            rounded: rounded,
-            selected: selected);
+      colors: Colors.accents,
+      onTap: onTap,
+      rounded: rounded,
+      selected: selected);
 }
 
 class ColorPickerDialog extends StatelessWidget {
@@ -125,7 +125,7 @@ class ColorPickerDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var children = [];
+    List<Widget> children = [];
 
     if (title != null) {
       children.add(new Container(
