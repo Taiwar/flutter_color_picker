@@ -11,11 +11,17 @@ A simple color picker for Flutter
 ### Basic usage
 
 ```dart
- Color color = await showDialog(
-          context: context,
-          child: new PrimaryColorPickerDialog());
+Color color = await showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return new PrimaryColorPickerDialog();
+        }
+    );
 
- Color color = await showDialog(
-          context: context,
-          child: new AccentColorPickerDialog());
+Color color = await showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return new AccentColorPickerDialog();
+        }
+    );
 ```
