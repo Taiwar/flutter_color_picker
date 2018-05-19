@@ -21,22 +21,22 @@ class ColorTile extends StatelessWidget {
   Widget build(BuildContext context) {
     Widget body;
     if (rounded == true) {
-      body = new Container(
+      body = Container(
           height: size,
           width: size,
-          margin: const EdgeInsets.all(4.0),
-          decoration: new BoxDecoration(color: color, shape: BoxShape.circle));
+          margin: EdgeInsets.all(4.0),
+          decoration: BoxDecoration(color: color, shape: BoxShape.circle));
     } else {
-      body = new Container(height: size, width: size, color: color);
+      body = Container(height: size, width: size, color: color);
     }
 
     if (check) {
-      body = new Stack(
+      body = Stack(
           alignment: FractionalOffset.center,
-          children: <Widget>[body, new Icon(Icons.done, color: Colors.white)]);
+          children: <Widget>[body, Icon(Icons.done, color: Colors.white)]);
     }
 
-    return new GestureDetector(onTap: onTap, child: body);
+    return GestureDetector(onTap: onTap, child: body);
   }
 }
 
@@ -60,7 +60,7 @@ class ColorPickerGrid extends StatelessWidget {
         sizeRow: orientation == Orientation.portrait ? 4 : 6,
         selected: selected);
 
-    return new Column(children: rows);
+    return Column(children: rows);
   }
 
   List<Widget> _buildColorRows(List<Color> colors, ValueChanged<Color> onTap,
@@ -71,12 +71,15 @@ class ColorPickerGrid extends StatelessWidget {
     for (Color color in colors) {
       if (count % sizeRow == 0) {
         if (row != null) {
-          rows.add(new Row(
-              children: row, mainAxisAlignment: MainAxisAlignment.center));
+          rows.add(
+              Row(
+                  children: row, mainAxisAlignment: MainAxisAlignment.center
+              )
+          );
         }
         row = [];
       }
-      row.add(new ColorTile(
+      row.add(ColorTile(
           color: color,
           onTap: () {
             onTap(color);
@@ -87,11 +90,14 @@ class ColorPickerGrid extends StatelessWidget {
     }
 
     if (row?.isNotEmpty == true) {
-      rows.add(new Row(
-          children: row,
-          mainAxisAlignment: row.length == sizeRow
-              ? MainAxisAlignment.center
-              : MainAxisAlignment.start));
+      rows.add(
+          Row(
+              children: row,
+              mainAxisAlignment: row.length == sizeRow
+                  ? MainAxisAlignment.center
+                  : MainAxisAlignment.start
+          )
+      );
     }
     return rows;
   }
@@ -128,19 +134,19 @@ class ColorPickerDialog extends StatelessWidget {
     List<Widget> children = [];
 
     if (title != null) {
-      children.add(new Container(
-          padding: const EdgeInsets.fromLTRB(0.0, 24.0, 0.0, 24.0),
-          child: new DefaultTextStyle(
+      children.add(Container(
+          padding: EdgeInsets.fromLTRB(0.0, 24.0, 0.0, 24.0),
+          child: DefaultTextStyle(
               style: Theme.of(context).textTheme.title, child: title),
           alignment: FractionalOffset.center));
     }
     children.add(body);
-    return new Dialog(
-        child: new IntrinsicWidth(
+    return Dialog(
+        child: IntrinsicWidth(
             stepWidth: 10.0,
-            child: new ConstrainedBox(
-                constraints: const BoxConstraints(minWidth: 280.0),
-                child: new Column(
+            child: ConstrainedBox(
+                constraints: BoxConstraints(minWidth: 280.0),
+                child: Column(
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: children))));
@@ -155,8 +161,8 @@ class PrimaryColorPickerDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new ColorPickerDialog(
-        body: new PrimaryColorPickerGrid(
+    return ColorPickerDialog(
+        body: PrimaryColorPickerGrid(
             onTap: (Color color) {
               Navigator.pop(context, color);
             },
@@ -173,8 +179,8 @@ class AccentColorPickerDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new ColorPickerDialog(
-        body: new AccentColorPickerGrid(
+    return ColorPickerDialog(
+        body: AccentColorPickerGrid(
             onTap: (Color color) {
               Navigator.pop(context, color);
             },
